@@ -40,35 +40,33 @@ void Sailboat::output() const {
 }
 
 void Sailboat::saveToFile(ofstream& file) const {
-    size_t typeSize = type.size();
-    file.write(reinterpret_cast<const char*>(&typeSize), sizeof(typeSize));
-    file.write(type.data(), typeSize);
-
-    size_t nameSize = name.size();
-    file.write(reinterpret_cast<const char*>(&nameSize), sizeof(nameSize));
-    file.write(name.data(), nameSize);
-
-    file.write(reinterpret_cast<const char*>(&isMilitary), sizeof(isMilitary));
-    file.write(reinterpret_cast<const char*>(&length), sizeof(length));
-    file.write(reinterpret_cast<const char*>(&speed), sizeof(speed));
-    file.write(reinterpret_cast<const char*>(&crew), sizeof(crew));
+    static int index = 0;
+    file << "Index: " << ++index
+        << ", Type: " << type
+        << ", Name: " << name
+        << ", IsMilitary: " << (isMilitary ? "Yes" : "No")
+        << ", Length: " << length
+        << ", Speed: " << speed
+        << ", Crew: " << crew << endl;
 }
 
 void Sailboat::loadFromFile(ifstream& file) {
-    size_t typeSize;
-    file.read(reinterpret_cast<char*>(&typeSize), sizeof(typeSize));
-    type.resize(typeSize);
-    file.read(&type[0], typeSize);
-
-    size_t nameSize;
-    file.read(reinterpret_cast<char*>(&nameSize), sizeof(nameSize));
-    name.resize(nameSize);
-    file.read(&name[0], nameSize);
-
-    file.read(reinterpret_cast<char*>(&isMilitary), sizeof(isMilitary));
-    file.read(reinterpret_cast<char*>(&length), sizeof(length));
-    file.read(reinterpret_cast<char*>(&speed), sizeof(speed));
-    file.read(reinterpret_cast<char*>(&crew), sizeof(crew));
+    string label;
+    file >> label >> label;
+    file.ignore();
+    getline(file, type, ',');
+    file.ignore(10, ':');
+    getline(file, name, ',');
+    file.ignore(10, ':');
+    string militaryStatus;
+    getline(file, militaryStatus, ',');
+    isMilitary = (militaryStatus.find("Yes") != string::npos);
+    file.ignore(10, ':');
+    file >> length;
+    file.ignore(10, ':');
+    file >> speed;
+    file.ignore(10, ':');
+    file >> crew;
 }
 
 string Sailboat::getType() const { return type; }

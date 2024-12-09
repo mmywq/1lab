@@ -35,31 +35,27 @@ void Boat::output() const {
 }
 
 void Boat::saveToFile(ofstream& file) const {
-    size_t purposeSize = purpose.size();
-    file.write(reinterpret_cast<const char*>(&purposeSize), sizeof(purposeSize));
-    file.write(purpose.data(), purposeSize);
+    static int index = 0;
 
-    size_t materialSize = material.size();
-    file.write(reinterpret_cast<const char*>(&materialSize), sizeof(materialSize));
-    file.write(material.data(), materialSize);
-
-    file.write(reinterpret_cast<const char*>(&speed), sizeof(speed));
-    file.write(reinterpret_cast<const char*>(&capacity), sizeof(capacity));
+    // Простая запись без сложных локалей
+    file << "Index: " << ++index
+        << ", Purpose: " << purpose
+        << ", Material: " << material
+        << ", Speed: " << speed
+        << ", Capacity: " << capacity << endl;
 }
 
 void Boat::loadFromFile(ifstream& file) {
-    size_t purposeSize;
-    file.read(reinterpret_cast<char*>(&purposeSize), sizeof(purposeSize));
-    purpose.resize(purposeSize);
-    file.read(&purpose[0], purposeSize);
-
-    size_t materialSize;
-    file.read(reinterpret_cast<char*>(&materialSize), sizeof(materialSize));
-    material.resize(materialSize);
-    file.read(&material[0], materialSize);
-
-    file.read(reinterpret_cast<char*>(&speed), sizeof(speed));
-    file.read(reinterpret_cast<char*>(&capacity), sizeof(capacity));
+    string label;
+    file >> label >> label; // Пропустить "Index:"
+    file.ignore();
+    getline(file, purpose, ',');
+    file.ignore(10, ':');
+    getline(file, material, ',');
+    file.ignore(10, ':');
+    file >> speed;
+    file.ignore(10, ':');
+    file >> capacity;
 }
 
 string Boat::getPurpose() const { return purpose; }

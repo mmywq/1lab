@@ -64,7 +64,7 @@ void Keeper::display() const {
 }
 
 void Keeper::saveToFile(const string& filename) const {
-    ofstream file(filename, ios::binary);
+    ofstream file(filename, ios::out);
     if (!file.is_open()) {
         throw runtime_error("Ошибка открытия файла для записи");
     }
