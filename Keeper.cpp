@@ -69,38 +69,39 @@ void Keeper::saveToFile(const string& filename) const {
         throw runtime_error("Ошибка открытия файла для записи");
     }
 
-    file.write(reinterpret_cast<const char*>(&size), sizeof(size));
+    file << size << "\n"; // Сохранение количества объектов
     for (int i = 0; i < size; ++i) {
         Submarine* submarine = dynamic_cast<Submarine*>(objects[i]);
         Sailboat* sailboat = dynamic_cast<Sailboat*>(objects[i]);
         Boat* boat = dynamic_cast<Boat*>(objects[i]);
 
         if (submarine) {
-            char type = 'S';
-            file.write(&type, sizeof(type));
+            file << i + 1 << " S ";
             submarine->saveToFile(file);
+            file << "\n";
         }
         else if (sailboat) {
-            char type = 'B';
-            file.write(&type, sizeof(type));
+            file << i + 1 << " B ";
             sailboat->saveToFile(file);
+            file << "\n";
         }
         else if (boat) {
-            char type = 'T';
-            file.write(&type, sizeof(type));
+            file << i + 1 << " T ";
             boat->saveToFile(file);
+            file << "\n";
         }
     }
 }
 
 void Keeper::loadFromFile(const string& filename) {
-    ifstream file(filename, ios::binary);
+    ifstream file(filename, ios::in);
     if (!file.is_open()) {
         throw runtime_error("Ошибка открытия файла для чтения");
     }
 
     int newSize;
-    file.read(reinterpret_cast<char*>(&newSize), sizeof(newSize));
+    file >> newSize;
+    file.ignore();
 
     for (int i = 0; i < size; ++i) {
         delete objects[i];
@@ -112,8 +113,9 @@ void Keeper::loadFromFile(const string& filename) {
     objects = new Base * [capacity];
 
     for (int i = 0; i < size; ++i) {
+        int index;
         char type;
-        file.read(&type, sizeof(type));
+        file >> index >> type;
 
         Base* obj = nullptr;
         if (type == 'S') {

@@ -19,7 +19,13 @@ int main() {
         cout << "6. Загрузить из файла\n";
         cout << "0. Выход\n";
         cout << "Ваш выбор: ";
-        cin >> choice;
+
+        if (!(cin >> choice)) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Ошибка: некорректный ввод. Попробуйте снова." << endl;
+            continue;
+        }
 
         try {
             if (choice == 1) {
@@ -30,7 +36,10 @@ int main() {
                 if (choice == 1) obj = new Submarine();
                 else if (choice == 2) obj = new Sailboat();
                 else if (choice == 3) obj = new Boat();
-                else continue;
+                else {
+                    cout << "Ошибка: некорректный выбор объекта." << endl;
+                    continue;
+                }
 
                 obj->input();
                 keeper.addObject(obj);
@@ -58,6 +67,9 @@ int main() {
             }
             else if (choice == 0) {
                 break;
+            }
+            else {
+                cout << "Ошибка: некорректный выбор. Попробуйте снова." << endl;
             }
         }
         catch (const exception& e) {

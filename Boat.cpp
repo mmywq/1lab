@@ -35,27 +35,18 @@ void Boat::output() const {
 }
 
 void Boat::saveToFile(ofstream& file) const {
-    static int index = 0;
-
-    // Простая запись без сложных локалей
-    file << "Index: " << ++index
-        << ", Purpose: " << purpose
-        << ", Material: " << material
-        << ", Speed: " << speed
-        << ", Capacity: " << capacity << endl;
+    file << "Purpose: " << purpose << " "
+        << "Material: " << material << " "
+        << "Speed: " << speed << " "
+        << "Capacity: " << capacity;
 }
 
 void Boat::loadFromFile(ifstream& file) {
     string label;
-    file >> label >> label; // Пропустить "Index:"
-    file.ignore();
-    getline(file, purpose, ',');
-    file.ignore(10, ':');
-    getline(file, material, ',');
-    file.ignore(10, ':');
-    file >> speed;
-    file.ignore(10, ':');
-    file >> capacity;
+    file >> label >> purpose;
+    file >> label >> material;
+    file >> label >> speed;
+    file >> label >> capacity;
 }
 
 string Boat::getPurpose() const { return purpose; }

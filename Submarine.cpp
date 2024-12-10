@@ -41,30 +41,21 @@ void Submarine::output() const {
 }
 
 void Submarine::saveToFile(ofstream& file) const {
-    static int index = 0;
-    file << "Index: " << ++index
-        << ", Length: " << length
-        << ", Width: " << width
-        << ", Crew: " << crew
-        << ", UnderwaterTime: " << underwaterTime
-        << ", MaxSpeed: " << maxSpeed
-        << ", Weapons: " << weapons << endl;
+    file << "Length: " << length << " "
+        << "Width: " << width << " "
+        << "Crew: " << crew << " "
+        << "UnderwaterTime: " << underwaterTime << " "
+        << "MaxSpeed: " << maxSpeed << " "
+        << "Weapons: " << weapons;
 }
 
 void Submarine::loadFromFile(ifstream& file) {
     string label;
-    file >> label >> label;
-    file.ignore();
-    file >> length;
-    file.ignore(10, ':');
-    file >> width;
-    file.ignore(10, ':');
-    file >> crew;
-    file.ignore(10, ':');
-    file >> underwaterTime;
-    file.ignore(10, ':');
-    file >> maxSpeed;
-    file.ignore(10, ':');
+    file >> label >> length;
+    file >> label >> width;
+    file >> label >> crew;
+    file >> label >> underwaterTime;
+    file >> label >> maxSpeed;
     file.ignore();
     getline(file, weapons);
 }

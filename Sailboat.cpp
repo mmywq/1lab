@@ -40,33 +40,25 @@ void Sailboat::output() const {
 }
 
 void Sailboat::saveToFile(ofstream& file) const {
-    static int index = 0;
-    file << "Index: " << ++index
-        << ", Type: " << type
-        << ", Name: " << name
-        << ", IsMilitary: " << (isMilitary ? "Yes" : "No")
-        << ", Length: " << length
-        << ", Speed: " << speed
-        << ", Crew: " << crew << endl;
+    file << "Type: " << type << " "
+        << "Name: " << name << " "
+        << "IsMilitary: " << (isMilitary ? "Yes" : "No") << " "
+        << "Length: " << length << " "
+        << "Speed: " << speed << " "
+        << "Crew: " << crew;
 }
 
 void Sailboat::loadFromFile(ifstream& file) {
     string label;
-    file >> label >> label;
-    file.ignore();
-    getline(file, type, ',');
-    file.ignore(10, ':');
-    getline(file, name, ',');
-    file.ignore(10, ':');
+    file >> label >> type;
+    file >> label >> name;
+    file >> label;
     string militaryStatus;
-    getline(file, militaryStatus, ',');
-    isMilitary = (militaryStatus.find("Yes") != string::npos);
-    file.ignore(10, ':');
-    file >> length;
-    file.ignore(10, ':');
-    file >> speed;
-    file.ignore(10, ':');
-    file >> crew;
+    file >> militaryStatus;
+    isMilitary = (militaryStatus == "Yes");
+    file >> label >> length;
+    file >> label >> speed;
+    file >> label >> crew;
 }
 
 string Sailboat::getType() const { return type; }
