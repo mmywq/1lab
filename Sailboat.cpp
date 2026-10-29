@@ -1,42 +1,42 @@
-#include "Sailboat.h"
+ï»¿#include "Sailboat.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
 
 Sailboat::Sailboat() : type("Unknown"), name("Unknown"), isMilitary(false), length(0), speed(0), crew(0) {
-    cout << "Âûçâàí êîíñòðóêòîð Sailboat ïî óìîë÷àíèþ" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Sailboat Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ" << endl;
 }
 
 Sailboat::Sailboat(const string& type, const string& name, bool isMilitary, float length, float speed, int crew)
     : type(type), name(name), isMilitary(isMilitary), length(length), speed(speed), crew(crew) {
-    cout << "Âûçâàí êîíñòðóêòîð Sailboat ñ ïàðàìåòðàìè" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Sailboat Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸" << endl;
 }
 
 Sailboat::Sailboat(const Sailboat& other)
     : type(other.type), name(other.name), isMilitary(other.isMilitary), length(other.length), speed(other.speed), crew(other.crew) {
-    cout << "Âûçâàí êîíñòðóêòîð êîïèðîâàíèÿ Sailboat" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Sailboat" << endl;
 }
 
 void Sailboat::input() {
-    cout << "Ââåäèòå òèï ïàðóñíèêà: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ð¿Ð°Ñ€ÑƒÑÐ½Ð¸ÐºÐ°: ";
     cin.ignore();
     getline(cin, type);
-    cout << "Ââåäèòå íàçâàíèå: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ: ";
     getline(cin, name);
-    cout << "Âîåííûé (1) èëè ìèðíûé (0): ";
+    cout << "Ð’Ð¾ÐµÐ½Ð½Ñ‹Ð¹ (1) Ð¸Ð»Ð¸ Ð¼Ð¸Ñ€Ð½Ñ‹Ð¹ (0): ";
     cin >> isMilitary;
-    cout << "Ââåäèòå äëèíó êîðïóñà: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð»Ð¸Ð½Ñƒ ÐºÐ¾Ñ€Ð¿ÑƒÑÐ°: ";
     cin >> length;
-    cout << "Ââåäèòå ñêîðîñòü: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ: ";
     cin >> speed;
-    cout << "Ââåäèòå ýêèïàæ: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐºÐ¸Ð¿Ð°Ð¶: ";
     cin >> crew;
 }
 
 void Sailboat::output() const {
-    cout << "Ïàðóñíèê: òèï " << type << ", íàçâàíèå " << name
-        << ", " << (isMilitary ? "âîåííûé" : "ìèðíûé") << ", äëèíà " << length
-        << ", ñêîðîñòü " << speed << ", ýêèïàæ " << crew << endl;
+    cout << "ÐŸÐ°Ñ€ÑƒÑÐ½Ð¸Ðº: Ñ‚Ð¸Ð¿ " << type << ", Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ " << name
+        << ", " << (isMilitary ? "Ð²Ð¾ÐµÐ½Ð½Ñ‹Ð¹" : "Ð¼Ð¸Ñ€Ð½Ñ‹Ð¹") << ", Ð´Ð»Ð¸Ð½Ð° " << length
+        << ", ÑÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ " << speed << ", ÑÐºÐ¸Ð¿Ð°Ð¶ " << crew << endl;
 }
 
 void Sailboat::saveToFile(ofstream& file) const {
@@ -80,5 +80,5 @@ int Sailboat::getCrew() const { return crew; }
 void Sailboat::setCrew(int crew) { this->crew = crew; }
 
 Sailboat::~Sailboat() {
-    cout << "Âûçâàí äåñòðóêòîð Sailboat" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ Ð´ÐµÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Sailboat" << endl;
 }

@@ -1,37 +1,37 @@
-#include "Boat.h"
+ï»¿#include "Boat.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
 
 Boat::Boat() : purpose("Unknown"), material("Unknown"), speed(0), capacity(0) {
-    cout << "Âûçâàí êîíñòðóêòîð Boat ïî óìîë÷àíèþ" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Boat Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ" << endl;
 }
 
 Boat::Boat(const string& purpose, const string& material, float speed, int capacity)
     : purpose(purpose), material(material), speed(speed), capacity(capacity) {
-    cout << "Âûçâàí êîíñòðóêòîð Boat ñ ïàðàìåòðàìè" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Boat Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸" << endl;
 }
 
 Boat::Boat(const Boat& other)
     : purpose(other.purpose), material(other.material), speed(other.speed), capacity(other.capacity) {
-    cout << "Âûçâàí êîíñòðóêòîð êîïèðîâàíèÿ Boat" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Boat" << endl;
 }
 
 void Boat::input() {
-    cout << "Ââåäèòå íàçíà÷åíèå êàòåðà: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÐºÐ°Ñ‚ÐµÑ€Ð°: ";
     cin.ignore();
     getline(cin, purpose);
-    cout << "Ââåäèòå ìàòåðèàë êîðïóñà: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¼Ð°Ñ‚ÐµÑ€Ð¸Ð°Ð» ÐºÐ¾Ñ€Ð¿ÑƒÑÐ°: ";
     getline(cin, material);
-    cout << "Ââåäèòå ñêîðîñòü: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ: ";
     cin >> speed;
-    cout << "Ââåäèòå âìåñòèìîñòü: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ð¼ÐµÑÑ‚Ð¸Ð¼Ð¾ÑÑ‚ÑŒ: ";
     cin >> capacity;
 }
 
 void Boat::output() const {
-    cout << "Êàòåð: íàçíà÷åíèå " << purpose << ", ìàòåðèàë " << material
-        << ", ñêîðîñòü " << speed << ", âìåñòèìîñòü " << capacity << endl;
+    cout << "ÐšÐ°Ñ‚ÐµÑ€: Ð½Ð°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ " << purpose << ", Ð¼Ð°Ñ‚ÐµÑ€Ð¸Ð°Ð» " << material
+        << ", ÑÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ " << speed << ", Ð²Ð¼ÐµÑÑ‚Ð¸Ð¼Ð¾ÑÑ‚ÑŒ " << capacity << endl;
 }
 
 void Boat::saveToFile(ofstream& file) const {
@@ -62,5 +62,5 @@ int Boat::getCapacity() const { return capacity; }
 void Boat::setCapacity(int capacity) { this->capacity = capacity; }
 
 Boat::~Boat() {
-    cout << "Âûçâàí äåñòðóêòîð Boat" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ Ð´ÐµÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Boat" << endl;
 }

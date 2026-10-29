@@ -1,43 +1,43 @@
-#include "Submarine.h"
+ï»¿#include "Submarine.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
 
 Submarine::Submarine() : length(0), width(0), crew(0), underwaterTime(0), maxSpeed(0), weapons("None") {
-    cout << "Âûçâàí êîíñòðóêòîð Submarine ïî óìîë÷àíèþ" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Submarine Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ" << endl;
 }
 
 Submarine::Submarine(float length, float width, int crew, int underwaterTime, int maxSpeed, const string& weapons)
     : length(length), width(width), crew(crew), underwaterTime(underwaterTime), maxSpeed(maxSpeed), weapons(weapons) {
-    cout << "Âûçâàí êîíñòðóêòîð Submarine ñ ïàðàìåòðàìè" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Submarine Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸" << endl;
 }
 
 Submarine::Submarine(const Submarine& other)
     : length(other.length), width(other.width), crew(other.crew),
     underwaterTime(other.underwaterTime), maxSpeed(other.maxSpeed), weapons(other.weapons) {
-    cout << "Âûçâàí êîíñòðóêòîð êîïèðîâàíèÿ Submarine" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Submarine" << endl;
 }
 
 void Submarine::input() {
-    cout << "Ââåäèòå äëèíó: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð»Ð¸Ð½Ñƒ: ";
     cin >> length;
-    cout << "Ââåäèòå øèðèíó: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑˆÐ¸Ñ€Ð¸Ð½Ñƒ: ";
     cin >> width;
-    cout << "Ââåäèòå ýêèïàæ: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐºÐ¸Ð¿Ð°Ð¶: ";
     cin >> crew;
-    cout << "Ââåäèòå âðåìÿ ïîä âîäîé: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ€ÐµÐ¼Ñ Ð¿Ð¾Ð´ Ð²Ð¾Ð´Ð¾Ð¹: ";
     cin >> underwaterTime;
-    cout << "Ââåäèòå ìàêñèìàëüíóþ ñêîðîñòü: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½ÑƒÑŽ ÑÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ: ";
     cin >> maxSpeed;
-    cout << "Ââåäèòå âîîðóæåíèå: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ð¾Ð¾Ñ€ÑƒÐ¶ÐµÐ½Ð¸Ðµ: ";
     cin.ignore();
     getline(cin, weapons);
 }
 
 void Submarine::output() const {
-    cout << "Ïîäâîäíàÿ ëîäêà: äëèíà " << length << ", øèðèíà " << width
-        << ", ýêèïàæ " << crew << ", âðåìÿ ïîä âîäîé " << underwaterTime
-        << ", ñêîðîñòü " << maxSpeed << ", âîîðóæåíèå " << weapons << endl;
+    cout << "ÐŸÐ¾Ð´Ð²Ð¾Ð´Ð½Ð°Ñ Ð»Ð¾Ð´ÐºÐ°: Ð´Ð»Ð¸Ð½Ð° " << length << ", ÑˆÐ¸Ñ€Ð¸Ð½Ð° " << width
+        << ", ÑÐºÐ¸Ð¿Ð°Ð¶ " << crew << ", Ð²Ñ€ÐµÐ¼Ñ Ð¿Ð¾Ð´ Ð²Ð¾Ð´Ð¾Ð¹ " << underwaterTime
+        << ", ÑÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ " << maxSpeed << ", Ð²Ð¾Ð¾Ñ€ÑƒÐ¶ÐµÐ½Ð¸Ðµ " << weapons << endl;
 }
 
 void Submarine::saveToFile(ofstream& file) const {
@@ -79,5 +79,5 @@ string Submarine::getWeapons() const { return weapons; }
 void Submarine::setWeapons(const string& weapons) { this->weapons = weapons; }
 
 Submarine::~Submarine() {
-    cout << "Âûçâàí äåñòðóêòîð Submarine" << endl;
+    cout << "Ð’Ñ‹Ð·Ð²Ð°Ð½ Ð´ÐµÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Submarine" << endl;
 }

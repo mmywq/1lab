@@ -1,4 +1,4 @@
-#include "Keeper.h"
+п»ї#include "Keeper.h"
 #include "Submarine.h"
 #include "Sailboat.h"
 #include "Boat.h"
@@ -35,7 +35,7 @@ void Keeper::addObject(Base* obj) {
 
 void Keeper::removeObject(int index) {
     if (index < 0 || index >= size) {
-        throw out_of_range("Индекс вне диапазона");
+        throw out_of_range("РРЅРґРµРєСЃ РІРЅРµ РґРёР°РїР°Р·РѕРЅР°");
     }
     delete objects[index];
     for (int i = index; i < size - 1; ++i) {
@@ -46,15 +46,15 @@ void Keeper::removeObject(int index) {
 
 void Keeper::editObject(int index) {
     if (index < 0 || index >= size) {
-        throw out_of_range("Индекс вне диапазона");
+        throw out_of_range("РРЅРґРµРєСЃ РІРЅРµ РґРёР°РїР°Р·РѕРЅР°");
     }
-    cout << "Редактирование объекта:" << endl;
+    cout << "Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РѕР±СЉРµРєС‚Р°:" << endl;
     objects[index]->input();
 }
 
 void Keeper::display() const {
     if (size == 0) {
-        cout << "Контейнер пуст." << endl;
+        cout << "РљРѕРЅС‚РµР№РЅРµСЂ РїСѓСЃС‚." << endl;
         return;
     }
     for (int i = 0; i < size; ++i) {
@@ -66,10 +66,10 @@ void Keeper::display() const {
 void Keeper::saveToFile(const string& filename) const {
     ofstream file(filename, ios::out);
     if (!file.is_open()) {
-        throw runtime_error("Ошибка открытия файла для записи");
+        throw runtime_error("РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° РґР»СЏ Р·Р°РїРёСЃРё");
     }
 
-    file << size << "\n"; // Сохранение количества объектов
+    file << size << "\n"; // РЎРѕС…СЂР°РЅРµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° РѕР±СЉРµРєС‚РѕРІ
     for (int i = 0; i < size; ++i) {
         Submarine* submarine = dynamic_cast<Submarine*>(objects[i]);
         Sailboat* sailboat = dynamic_cast<Sailboat*>(objects[i]);
@@ -96,7 +96,7 @@ void Keeper::saveToFile(const string& filename) const {
 void Keeper::loadFromFile(const string& filename) {
     ifstream file(filename, ios::in);
     if (!file.is_open()) {
-        throw runtime_error("Ошибка открытия файла для чтения");
+        throw runtime_error("РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° РґР»СЏ С‡С‚РµРЅРёСЏ");
     }
 
     int newSize;

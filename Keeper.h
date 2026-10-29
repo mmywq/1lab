@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "Base.h"
 #include <string>
 
@@ -8,14 +8,14 @@ private:
     int size;
     int capacity;
 
-    void expand(); // Увеличивает емкость массива
+    void expand(); // РЈРІРµР»РёС‡РёРІР°РµС‚ РµРјРєРѕСЃС‚СЊ РјР°СЃСЃРёРІР°
 public:
     Keeper();
     ~Keeper();
 
     void addObject(Base* obj);
     void removeObject(int index);
-    void editObject(int index); // Позволяет редактировать объект
+    void editObject(int index); // РџРѕР·РІРѕР»СЏРµС‚ СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РѕР±СЉРµРєС‚
 
     void display() const;
     void saveToFile(const std::string& filename) const;
